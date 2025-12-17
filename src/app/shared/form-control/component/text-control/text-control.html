@@ -1,0 +1,33 @@
+<div [formGroup]="form">
+    <mat-form-field appearance="outline" [class]="class"
+        [class.readonly-field]="isDisable || formControlModel.isDisable"
+        [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
+        <mat-label>{{ formControlModel.label }}</mat-label>
+
+        <ng-container>
+            <input matInput appInputTrim [appTrimLeadingZeroes]="formControlModel.trimLeadingZeroes"
+                [defaultZero]="formControlModel.defaultZero" [formControlName]="formControlModel.key"
+                [placeholder]="formControlModel.placeHolder ?? ''" [id]="formControlModel.key"
+                [type]="formControlModel.inputType" [value]="formControlModel.value" autocomplete=""
+                (input)="onChange($event)" (blur)="onFieldBlur()"
+                [readonly]="isDisable || formControlModel.isDisable" />
+        </ng-container>
+
+        @if(formControlModel.displayIcon){
+        <button type="button" mat-icon-button matSuffix class="md"
+            (click)="!formControlModel.isDisable && onIconClick($event)">
+            <img [src]="formControlModel.iconName" alt="" />
+        </button>
+        } @if(isDisable == false){
+        <mat-error>
+            @if(errorLength < errorText.length && errorText.length> 55) {
+                <span [matTooltip]="errorText">
+                    {{ errorText.substring(0, errorLength || 55).concat("...") }}
+                </span>
+                } @else {
+                {{ errorText }}
+                }
+        </mat-error>
+        }
+    </mat-form-field>
+</div>

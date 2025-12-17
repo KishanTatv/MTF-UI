@@ -1,0 +1,10 @@
+<button mat-flat-button [class]="class" [matTooltip]="tooltip" [disabled]="isDisabled" [type]="type"
+    (click)="onClick($any($event))" (mouseenter)="isHover = true" (mouseleave)="isHover = false">
+    @if (icon) {
+    <em class="btn-icon is-prefix">
+        <img [src]="icon" alt="" />
+    </em>
+    } @if (width > 568 || !icon){
+    {{ label }}
+    }
+</button>

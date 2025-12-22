@@ -54,3 +54,10 @@ body {
 .mat-mdc-form-field-error {
   color: red !important;
 }
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: #d0d5dd;
+  --mdc-outlined-text-field-focus-outline-color: #2563eb;
+  --mdc-outlined-text-field-label-text-color: #667085;
+  --mdc-outlined-text-field-input-text-color: #111827;
+}

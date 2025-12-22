@@ -6,5 +6,4 @@ export interface ILoginModel {
 export interface ITokenDTO {
   token: string;
   refreshToken: string;
-  companyId: number;
 }

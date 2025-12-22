@@ -1,1 +1,32 @@
-<p>sidebar works!</p>
+<aside class="sidebar h-100">
+    <div class="sidebar-logo">
+        Fleet<span>Pro</span>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a routerLink="/dashboard" routerLinkActive="active">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+        </a>
+
+        <a routerLink="/vehicles" routerLinkActive="active">
+            <mat-icon>local_shipping</mat-icon>
+            Vehicles
+        </a>
+
+        <a routerLink="/drivers" routerLinkActive="active">
+            <mat-icon>badge</mat-icon>
+            Drivers
+        </a>
+
+        <a routerLink="/trips" routerLinkActive="active">
+            <mat-icon>route</mat-icon>
+            Trips
+        </a>
+
+        <a routerLink="/reports" routerLinkActive="active">
+            <mat-icon>analytics</mat-icon>
+            Reports
+        </a>
+    </nav>
+</aside>

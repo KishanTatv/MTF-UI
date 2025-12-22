@@ -1,17 +1,45 @@
-.static-captcha {
-  display: flex;
-  gap: 13px;
-  .captcha-box {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 48px;
-    width: 91px;
-    background-color: #cfcfcf00;
-    border: 1px solid #747474;
-    border-radius: 6px;
-    font-size: 16px;
-    line-height: 20px;
-    text-decoration: line-through;
-  }
+/* Card */
+.signup-card {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Links */
+.site-link {
+  color: #0d6efd;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-link:hover {
+  text-decoration: underline;
+}
+
+/* Captcha */
+.captcha-box {
+  background-color: #f1f3f5;
+  border: 1px dashed #ced4da;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-decoration: line-through;
+}
+
+.refresh-icon {
+  cursor: pointer;
+  color: #0d6efd;
+  font-size: 20px;
+}
+
+.refresh-icon:hover {
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+
+/* Utilities */
+.min-vh-100 {
+  min-height: 100vh;
 }

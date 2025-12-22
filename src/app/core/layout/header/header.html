@@ -1,1 +1,44 @@
-<p>header works!</p>
+<header class="topbar">
+    <div class="topbar-left">
+        <h6 class="mb-0">Tenant: ABC Transport Ltd</h6>
+    </div>
+
+    <div class="topbar-right">
+        <!-- Notifications -->
+        <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+            <mat-icon>notifications</mat-icon>
+            <span class="badge" *ngIf="notifications.length">{{ notifications.length }}</span>
+        </button>
+        <mat-menu #notificationsMenu="matMenu">
+            <ng-container *ngIf="notifications.length; else noNotifications">
+                <button mat-menu-item *ngFor="let n of notifications">
+                    <mat-icon>info</mat-icon>
+                    <span>{{ n.message }}</span>
+                </button>
+            </ng-container>
+            <ng-template #noNotifications>
+                <span class="px-4 py-2 d-block text-muted">No notifications</span>
+            </ng-template>
+        </mat-menu>
+
+        <!-- Profile -->
+        <span class="user-name">Admin</span>
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+</header>

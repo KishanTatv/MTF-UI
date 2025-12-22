@@ -12,7 +12,7 @@ import { AuthInfoKeys, validation } from '../../../shared/common/constant';
 import { Button } from '../../../shared/form-control/component/button/button';
 import { AuthService } from '../../services/auth-service';
 import { LocalStorage } from '../../../shared/service/local-storage/local-storage';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,8 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private storageService: LocalStorage,
-    private snackbar: SnackBar
+    private snackbar: SnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,10 +56,12 @@ export class Login implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.result) {
-              this.storageService.set(
-                AuthInfoKeys.access_token,
-                res.data.token
-              );
+              this.storageService.set(AuthInfoKeys.access_token, res.data.token);
+              this.storageService.set(AuthInfoKeys.refresh_token, res.data.refreshToken);
+              this.router.navigate(['../dashboard']);
+            }
+            else{
+              this.snackbar.error(res.message);
             }
           },
           error: (err) => {

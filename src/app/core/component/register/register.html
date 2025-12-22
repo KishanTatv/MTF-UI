@@ -1,59 +1,89 @@
-<div class="w-50">
-    <h2 class="d-flex justify-content-center">Sign-up Form</h2>
-    <br />
-    <div class="container">
-        <form (ngSubmit)="onSignUp()" [formGroup]="form">
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.firstName" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.lastName" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.company" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.emailAddress" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.passwordField" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.confirmPassField" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="form-group col-sm-6">
-                    <app-text-control [formControlModel]="signupControl.contactNo" [form]="form" class="w-100">
-                    </app-text-control>
-                </div>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <app-text-control [formControlModel]="signupControl.captcha" [form]="form" class="w-100">
-                            </app-text-control>
-                        </div>
-                        <div class="static-captcha col-sm-6">
-                            <span class="captcha-box">{{ generatedCaptcha }}</span>
-                            <mat-icon class="mt-2" (click)="refreshCaptcha()">refresh</mat-icon>
-                            @if(form.get('captcha')?.errors?.['captchaMismatch'] &&
-                            form.get('captcha')?.touched){
-                            <mat-error> Captcha does not match </mat-error>
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <app-button type="submit" label="Sign-Up" class="w-50 btn btn-primary"></app-button>
-                    <p class="mt-2">Already have account? <a [routerLink]="['/auth/login']" class="site-link">log-in</a>
-                </div>
-                </p>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card signup-card shadow-sm">
+        <div class="card-body p-4">
+
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">Create Account</h3>
+                <p class="text-muted mb-0">Sign up to get started</p>
             </div>
-        </form>
+
+            <form [formGroup]="form" (ngSubmit)="onSignUp()">
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.firstName" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.lastName" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.company" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.emailAddress" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.passwordField" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.confirmPassField" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-text-control [formControlModel]="signupControl.contactNo" [form]="form">
+                        </app-text-control>
+                    </div>
+
+                    <!-- Captcha -->
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="flex-grow-1">
+                                <app-text-control [formControlModel]="signupControl.captcha" [form]="form">
+                                </app-text-control>
+                            </div>
+
+                            <div class="captcha-box">
+                                {{ generatedCaptcha }}
+                            </div>
+
+                            <mat-icon class="refresh-icon" (click)="refreshCaptcha()">refresh</mat-icon>
+                        </div>
+
+                        @if(form.get('captcha')?.errors?.['captchaMismatch'] &&
+                        form.get('captcha')?.touched){
+                        <mat-error>Captcha does not match</mat-error>
+                        }
+                    </div>
+
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid mt-4">
+                    <app-button type="submit" label="Create Account" class="btn btn-primary btn-lg">
+                    </app-button>
+                </div>
+
+                <!-- Footer -->
+                <div class="text-center mt-3">
+                    <span class="text-muted">Already have an account?</span>
+                    <a [routerLink]="['/auth/login']" class="site-link ms-1">
+                        Log in
+                    </a>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

@@ -1,0 +1,67 @@
+.topbar {
+  height: 56px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+  .topbar-left {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .icon {
+      cursor: pointer;
+      color: #475569;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  button[mat-icon-button] {
+    position: relative;
+    color: #475569;
+
+    .badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: #dc2626;
+      color: #fff;
+      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+}
+
+mat-menu {
+  min-width: 200px;
+
+  button.mat-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+}

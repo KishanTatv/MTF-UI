@@ -1,0 +1,98 @@
+<div class="container-fluid dashboard-container">
+
+    <!-- KPI Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-title">Total Vehicles</div>
+                <div class="kpi-value">128</div>
+                <div class="kpi-sub text-success">+5 this month</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-title">Active Trips</div>
+                <div class="kpi-value">42</div>
+                <div class="kpi-sub text-primary">Running now</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-title">Available Drivers</div>
+                <div class="kpi-value">67</div>
+                <div class="kpi-sub text-success">On duty</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="kpi-card danger">
+                <div class="kpi-title">Maintenance</div>
+                <div class="kpi-value">6</div>
+                <div class="kpi-sub text-danger">Vehicles</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Trips Table -->
+    <div class="row g-3">
+        <div class="col-lg-8">
+            <div class="card dashboard-card">
+                <div class="card-header bg-white fw-semibold">
+                    Recent Trips
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Trip ID</th>
+                                <th>Vehicle</th>
+                                <th>Driver</th>
+                                <th>Status</th>
+                                <th>Start Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#TRP-1023</td>
+                                <td>KA-01-AB-2345</td>
+                                <td>R. Sharma</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>09:30 AM</td>
+                            </tr>
+                            <tr>
+                                <td>#TRP-1022</td>
+                                <td>MH-12-CD-8890</td>
+                                <td>A. Khan</td>
+                                <td><span class="badge bg-warning">Scheduled</span></td>
+                                <td>11:00 AM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Panel -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card">
+                <div class="card-header bg-white fw-semibold">
+                    System Status
+                </div>
+                <div class="card-body">
+                    <div class="status-item">
+                        <span>Delayed Trips</span>
+                        <span class="text-danger fw-semibold">3</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Idle Vehicles</span>
+                        <span class="text-muted fw-semibold">14</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Drivers Off Duty</span>
+                        <span class="text-muted fw-semibold">22</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

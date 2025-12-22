@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-    <mat-form-field appearance="outline" [class]="class"
+    <mat-form-field appearance="outline" [class]="'w-100'+ class"
         [class.readonly-field]="isDisable || formControlModel.isDisable"
         [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
         <mat-label>{{ formControlModel.label }}</mat-label>

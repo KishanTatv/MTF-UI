@@ -16,7 +16,7 @@
         @if(formControlModel.displayIcon){
         <button type="button" mat-icon-button matSuffix class="md"
             (click)="!formControlModel.isDisable && onIconClick($event)">
-            <img [src]="formControlModel.iconName" alt="" />
+            <mat-icon>{{formControlModel.iconName}}</mat-icon>
         </button>
         } @if(isDisable == false){
         <mat-error>

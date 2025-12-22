@@ -10,6 +10,7 @@ import { InputTrim } from '../../../directive/input-trim';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { FormControlModel } from '../../interface/form-control.interface';
 import { ValidatorService } from '../../services/validator-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-text-control',
@@ -17,6 +18,7 @@ import { ValidatorService } from '../../services/validator-service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    CommonModule,
     ReactiveFormsModule,
     InputTrim,
     MatButtonModule,

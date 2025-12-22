@@ -2,7 +2,7 @@
     (click)="onClick($any($event))" (mouseenter)="isHover = true" (mouseleave)="isHover = false">
     @if (icon) {
     <em class="btn-icon is-prefix">
-        <img [src]="icon" alt="" />
+        <mat-icon>{{icon}}</mat-icon>
     </em>
     } @if (width > 568 || !icon){
     {{ label }}

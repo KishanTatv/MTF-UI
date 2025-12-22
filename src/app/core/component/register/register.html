@@ -1,1 +1,59 @@
-<p>register works!</p>
+<div class="w-50">
+    <h2 class="d-flex justify-content-center">Sign-up Form</h2>
+    <br />
+    <div class="container">
+        <form (ngSubmit)="onSignUp()" [formGroup]="form">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.firstName" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.lastName" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.company" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.emailAddress" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.passwordField" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.confirmPassField" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="form-group col-sm-6">
+                    <app-text-control [formControlModel]="signupControl.contactNo" [form]="form" class="w-100">
+                    </app-text-control>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <app-text-control [formControlModel]="signupControl.captcha" [form]="form" class="w-100">
+                            </app-text-control>
+                        </div>
+                        <div class="static-captcha col-sm-6">
+                            <span class="captcha-box">{{ generatedCaptcha }}</span>
+                            <mat-icon class="mt-2" (click)="refreshCaptcha()">refresh</mat-icon>
+                            @if(form.get('captcha')?.errors?.['captchaMismatch'] &&
+                            form.get('captcha')?.touched){
+                            <mat-error> Captcha does not match </mat-error>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <app-button type="submit" label="Sign-Up" class="w-50 btn btn-primary"></app-button>
+                    <p class="mt-2">Already have account? <a [routerLink]="['/auth/login']" class="site-link">log-in</a>
+                </div>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

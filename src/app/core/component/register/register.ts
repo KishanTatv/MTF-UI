@@ -1,11 +1,120 @@
 import { Component } from '@angular/core';
+import { TextControl } from '../../../shared/form-control/component/text-control/text-control';
+import { Button } from '../../../shared/form-control/component/button/button';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CaptchaCharacters, validation } from '../../../shared/common/constant';
+import { AuthService } from '../../services/auth-service';
+import { LocalStorage } from '../../../shared/service/local-storage/local-storage';
+import { SnackBar } from '../../../shared/service/snackbar/snack-bar';
+import { passwordMatchAsyncValidator } from '../../../shared/service/validators/passwordMatchAsyncValidator';
+import { signupControl } from '../../config/auth.config';
+import { MatError } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [
+    TextControl,
+    Button,
+    ReactiveFormsModule,
+    MatError,
+    MatIconModule,
+    RouterModule,
+  ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
 export class Register {
+  form!: FormGroup;
+  signupControl = signupControl;
+  generatedCaptcha: string = '';
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private storageService: LocalStorage,
+    private snackbar: SnackBar
+  ) {}
 
+  ngOnInit(): void {
+    this.createSignUpForm();
+    this.refreshCaptcha();
+  }
+
+  createSignUpForm() {
+    this.form = this.fb.group(
+      {
+        firstName: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.pattern(validation.common.nameREGEX),
+          ],
+        ],
+        lastName: [
+          '',
+          [
+            Validators.maxLength(20),
+            Validators.pattern(validation.common.nameREGEX),
+          ],
+        ],
+        company: ['', [Validators.required, Validators.maxLength(100)]],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(validation.common.emailREGEX),
+          ],
+        ],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(validation.common.passwordREGEX),
+          ],
+        ],
+        confirmPassword: ['', [Validators.required]],
+        contactNo: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(validation.common.contactREGEX),
+          ],
+        ],
+        captcha: ['', [Validators.required]],
+      },
+      {
+        validators: passwordMatchAsyncValidator('password', 'confirmPassword'),
+      }
+    );
+  }
+
+  refreshCaptcha() {
+    const chars = CaptchaCharacters;
+    this.generatedCaptcha = Array.from({ length: 6 }, () =>
+      chars.charAt(Math.floor(Math.random() * chars.length))
+    ).join('');
+  }
+
+  onSignUp() {
+    const captchaControl = this.form.get('captcha');
+    const enteredCaptcha = captchaControl?.value?.trim();
+    const generated = this.generatedCaptcha.trim();
+    if (enteredCaptcha !== generated) {
+      captchaControl?.setValue('');
+      this.refreshCaptcha();
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
+  }
 }

@@ -56,20 +56,26 @@ export class Login implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.result) {
-              this.storageService.set(AuthInfoKeys.access_token, res.data.token);
-              this.storageService.set(AuthInfoKeys.refresh_token, res.data.refreshToken);
+              this.storageService.set(
+                AuthInfoKeys.access_token,
+                res.data.token
+              );
+              this.storageService.set(
+                AuthInfoKeys.refresh_token,
+                res.data.refreshToken
+              );
               this.router.navigate(['../dashboard']);
-            }
-            else{
+              this.snackbar.success(res.message);
+            } else {
               this.snackbar.error(res.message);
             }
           },
           error: (err) => {
-            this.snackbar.error('try again later!');
+            this.snackbar.error('Try again later!');
           },
         });
     } else {
-      this.snackbar.error('please fill correct form');
+      this.snackbar.info('Please fill correct form!');
     }
   }
 }

@@ -1,6 +1,6 @@
 <header class="topbar">
     <div class="topbar-left">
-        <h6 class="mb-0">Tenant: ABC Transport Ltd</h6>
+        <h6 class="mb-0">Tenant: {{userData?.tenant}}</h6>
     </div>
 
     <div class="topbar-right">
@@ -22,7 +22,7 @@
         </mat-menu>
 
         <!-- Profile -->
-        <span class="user-name">Admin</span>
+        <span class="user-name">{{userData?.username}}</span>
         <button mat-icon-button [matMenuTriggerFor]="profileMenu">
             <mat-icon>account_circle</mat-icon>
         </button>
@@ -35,7 +35,7 @@
                 <mat-icon>settings</mat-icon>
                 <span>Settings</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item [routerLink]="['/auth/login']">
                 <mat-icon>logout</mat-icon>
                 <span>Logout</span>
             </button>

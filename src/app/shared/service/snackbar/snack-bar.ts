@@ -11,7 +11,16 @@ export class SnackBar {
   success(message: string) {
     this._snackBar.open(message, 'X', {
       duration: this.snackBarDuration,
-      panelClass: 'success',
+      panelClass: 'success-snackbar',
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+
+  info(message: string) {
+    this._snackBar.open(message, 'X', {
+      duration: this.snackBarDuration,
+      panelClass: ['info-snackbar'],
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
@@ -20,10 +29,9 @@ export class SnackBar {
   error(message: string) {
     this._snackBar.open(message, 'X', {
       duration: this.snackBarDuration,
-      panelClass: 'error',
+      panelClass: ['error-snackbar'],
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
   }
-
 }

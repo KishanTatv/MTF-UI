@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.scss',
 })
 export class Dashboard {
-
+  constructor(private jwtHelperService: JwtHelperService) {}
 }

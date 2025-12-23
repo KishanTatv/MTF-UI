@@ -61,3 +61,19 @@ body {
   --mdc-outlined-text-field-label-text-color: #667085;
   --mdc-outlined-text-field-input-text-color: #111827;
 }
+
+/*********** SnackBar  *************/
+.success-snackbar {
+  background-color: rgb(89, 189, 89);
+  color: white;
+}
+
+.error-snackbar {
+  background: #f5736a;
+  color: white;
+}
+
+.info-snackbar {
+  background-color: #6f9bfc;
+  color: white;
+}

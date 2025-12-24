@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -36,6 +36,7 @@ export class TextControl {
   @Input() dynamicHeight: boolean = false;
   @Input() autocomplete!: MatAutocomplete;
   @Input() errorLength: number = 0;
+  // errorLength = input.required<number>();
   @Output() inputChange = new EventEmitter<string>();
   @Output() inputBlur = new EventEmitter<Event>();
   @Output() enterInput = new EventEmitter<Event>();

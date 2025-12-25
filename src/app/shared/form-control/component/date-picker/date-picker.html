@@ -1,0 +1,25 @@
+<ng-container [formGroup]="form">
+    <mat-form-field appearance="outline" [class]="formControlModel.isDisable ? `${class} date-disabled` : class"
+        [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
+        <mat-label>{{ formControlModel.label }}</mat-label>
+        <input matInput [matDatepickerFilter]="dateFilter1" [matDatepicker]="picker"
+            [formControlName]="formControlModel.key" [id]="formControlModel.key" type="text"
+            (dateChange)="dateChange($event)" [min]="min" [max]="max" [readonly]="formControlModel.isDisable"
+            placeholder="DD-MM-YYYY" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formControlModel.isDisable">
+            <mat-icon matDatepickerToggleIcon>
+                calendar_month
+            </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+            @if(errorText.length > 45) {
+            <span [matTooltip]="errorText">
+                {{ errorText.substring(0, 45).concat("...") }}
+            </span>
+            } @else {
+            {{ errorText }}
+            }
+        </mat-error>
+    </mat-form-field>
+</ng-container>

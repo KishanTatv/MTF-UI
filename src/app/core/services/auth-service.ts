@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpHandler } from '../../shared/service/http-handler/http-handler';
 import { Observable, tap } from 'rxjs';
 import { IResponseModel } from '../../shared/common/response.interface';
-import { ILoginModel, ITokenDTO } from '../interface/auth.interface';
+import {
+  ILoginModel,
+  IRegisterModel,
+  ITokenDTO,
+} from '../interface/auth.interface';
 import { LocalStorage } from '../../shared/service/local-storage/local-storage';
 
 @Injectable({
@@ -13,6 +17,10 @@ export class AuthService {
     private readonly http: HttpHandler,
     private storageService: LocalStorage
   ) {}
+
+  register(loginData: IRegisterModel): Observable<IResponseModel<string>> {
+    return this.http.httpPost<string>('Auth/Registration', loginData);
+  }
 
   login(loginData: ILoginModel): Observable<IResponseModel<ITokenDTO>> {
     return this.http.httpPost<ITokenDTO>('Auth/Login', loginData);

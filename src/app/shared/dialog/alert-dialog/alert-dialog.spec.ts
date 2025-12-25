@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Driver } from './driver';
+import { AlertDialog } from './alert-dialog';
 
-describe('Driver', () => {
-  let component: Driver;
-  let fixture: ComponentFixture<Driver>;
+describe('AlertDialog', () => {
+  let component: AlertDialog;
+  let fixture: ComponentFixture<AlertDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Driver]
+      imports: [AlertDialog]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Driver);
+    fixture = TestBed.createComponent(AlertDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

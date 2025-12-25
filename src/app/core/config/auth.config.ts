@@ -75,7 +75,7 @@ export const signupControl = {
   },
   contactNo: {
     value: '',
-    key: 'contactNo',
+    key: 'phone',
     label: 'Contact No.',
     requiredErrMsg: ValidationMessages.required('Contact No.'),
     patternErrMsg: ValidationMessages.pattern('Contact No.'),
@@ -90,7 +90,7 @@ export const signupControl = {
   },
   company: {
     value: '',
-    key: 'company',
+    key: 'companyName',
     label: 'Company',
     inputType: 'text',
     requiredErrMsg: ValidationMessages.required('Company Name'),

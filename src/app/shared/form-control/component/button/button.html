@@ -1,10 +1,10 @@
-<button mat-flat-button [class]="class" [matTooltip]="tooltip" [disabled]="isDisabled" [type]="type"
-    (click)="onClick($any($event))" (mouseenter)="isHover = true" (mouseleave)="isHover = false">
+<button mat-flat-button class="app-btn {{ class }}" [matTooltip]="tooltip" [disabled]="isDisabled" [type]="type"
+    (click)="onClick($any($event))">
     @if (icon) {
-    <em class="btn-icon is-prefix">
-        <mat-icon>{{icon}}</mat-icon>
-    </em>
-    } @if (width > 568 || !icon){
-    {{ label }}
+    <mat-icon class="btn-icon">{{ icon }}</mat-icon>
+    }
+
+    @if (width > 568 || !icon) {
+    <span class="btn-text">{{ label }}</span>
     }
 </button>

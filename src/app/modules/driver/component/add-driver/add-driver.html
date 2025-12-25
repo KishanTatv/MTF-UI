@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>@if(!isEditMode){
+    <span>Add User</span>
+    }@else{
+    <span>Update User</span>
+    }
+</h2>
+<mat-dialog-content>
+    <div class="p-2">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <app-text-control [formControlModel]="addUserControl.firstName" [form]="form"></app-text-control>
+                </div>
+                <div class="col">
+                    <app-text-control [formControlModel]="addUserControl.lastName" [form]="form"></app-text-control>
+                </div>
+            </div>
+            <app-text-control [formControlModel]="addUserControl.emailAddress" [form]="form"></app-text-control>
+            <app-text-control [formControlModel]="addUserControl.contactNo" [form]="form"></app-text-control>
+            <app-text-control [formControlModel]="addUserControl.licenseNumber" [form]="form"></app-text-control>
+            <app-date-picker [formControlModel]="addUserControl.licenseExpiry" [form]="form"></app-date-picker>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <app-button label="Cancel" mat-dialog-close></app-button>
+    <app-button type="submit" label="Submit" class="btn btn-primary" (btnClick)="onSubmit()"></app-button>
+</mat-dialog-actions>

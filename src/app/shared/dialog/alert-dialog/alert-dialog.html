@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <div class="">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="d-flex m-0">
+                <mat-icon>warning</mat-icon>&nbsp; Delete {{ data.title }}
+            </h5>
+            <app-button class="p-0" mat-dialog-close icon="close" color="raised"
+                (btnClick)="onCancelClick()"></app-button>
+        </div>
+        <p class="mt-2">
+            <span class="fs-6">
+                Are you sure want to delete this <span>{{data.desc}}</span>? This action cannot be
+                undone.
+            </span>
+        </p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <app-button color="stroked" label="Close" (btnClick)="onCancelClick()"></app-button>
+    <app-button class="btn btn-danger" label="Yes, Delete" (btnClick)="onConfirmClick()"></app-button>
+</mat-dialog-actions>

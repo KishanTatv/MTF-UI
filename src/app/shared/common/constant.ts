@@ -1,6 +1,15 @@
 
 export const CaptchaCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
+export const specificDateFormats = {
+  DD_MM_YYYY: 'DD-MM-YYYY',
+  dd_MMM_YYYY: 'dd-MMM-yyyy',
+  YYYY_MM_dd: 'YYYY-MM-dd',
+  MMMdd_yyyy: 'MMM dd, yyyy',
+  MMM_YYYY: 'MMM YYYY',
+  MMMM_YYYY: 'MMMM YYYY',
+};
+
 export const AuthInfoKeys = {
   access_token: 'access_token',
   refresh_token: 'refresh_token',

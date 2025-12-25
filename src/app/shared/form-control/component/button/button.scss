@@ -1,0 +1,49 @@
+/* ============================
+   COMMON ACTION BUTTON
+   ============================ */
+
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* spacing between icon & text */
+
+  height: 40px;
+  padding: 0 16px;
+  min-width: 40px;
+
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+/* Icon */
+.app-btn .btn-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+}
+
+/* Text */
+.app-btn .btn-text {
+  white-space: nowrap;
+}
+
+/* Icon-only button */
+.app-btn.icon-only {
+  padding: 0;
+  width: 40px;
+}
+
+/* Hover & focus polish */
+.app-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* Disabled */
+.app-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

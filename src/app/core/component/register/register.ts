@@ -15,7 +15,7 @@ import { passwordMatchAsyncValidator } from '../../../shared/service/validators/
 import { signupControl } from '../../config/auth.config';
 import { MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +37,7 @@ export class Register {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private storageService: LocalStorage,
+    private router: Router,
     private snackbar: SnackBar
   ) {}
 
@@ -64,7 +64,7 @@ export class Register {
             Validators.pattern(validation.common.nameREGEX),
           ],
         ],
-        company: ['', [Validators.required, Validators.maxLength(100)]],
+        companyName: ['', [Validators.required, Validators.maxLength(100)]],
         email: [
           '',
           [
@@ -80,7 +80,7 @@ export class Register {
           ],
         ],
         confirmPassword: ['', [Validators.required]],
-        contactNo: [
+        phone: [
           '',
           [
             Validators.required,
@@ -106,6 +106,7 @@ export class Register {
     const captchaControl = this.form.get('captcha');
     const enteredCaptcha = captchaControl?.value?.trim();
     const generated = this.generatedCaptcha.trim();
+    console.log(this.generatedCaptcha, ' x ', enteredCaptcha);
     if (enteredCaptcha !== generated) {
       captchaControl?.setValue('');
       this.refreshCaptcha();
@@ -114,7 +115,19 @@ export class Register {
     }
 
     if (this.form.valid) {
-      console.log(this.form.value);
+      this.authService.register(this.form.value).subscribe({
+        next: (res) => {
+          if (res.result) {
+            this.snackbar.success(res.message + ' Please Try Login!');
+            this.router.navigate(['auth/login']);
+          } else {
+            this.snackbar.error(res.message);
+          }
+        },
+        error: (err) => {},
+      });
+    } else {
+      this.snackbar.error('Form is incorrect !');
     }
   }
 }

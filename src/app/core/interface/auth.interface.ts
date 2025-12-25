@@ -3,6 +3,15 @@ export interface ILoginModel {
   password: string;
 }
 
+export interface IRegisterModel {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone: string;
+  companyName: string;
+}
+
 export interface ITokenDTO {
   token: string;
   refreshToken: string;

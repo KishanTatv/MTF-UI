@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>@if(!isEditMode){
-    <span>Add Driver</span>
+    <span>Add Dispatcher</span>
     }@else{
-    <span>Update Driver</span>
+    <span>Update Dispatcher</span>
     }
 </h2>
 <mat-dialog-content>
@@ -17,8 +17,6 @@
             </div>
             <app-text-control [formControlModel]="addUserControl.emailAddress" [form]="form"></app-text-control>
             <app-text-control [formControlModel]="addUserControl.contactNo" [form]="form"></app-text-control>
-            <app-text-control [formControlModel]="addUserControl.licenseNumber" [form]="form"></app-text-control>
-            <app-date-picker [formControlModel]="addUserControl.licenseExpiry" [form]="form"></app-date-picker>
         </form>
     </div>
 </mat-dialog-content>

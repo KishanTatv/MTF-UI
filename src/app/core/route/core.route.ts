@@ -28,6 +28,13 @@ export const coreRoutes: Routes = [
           ),
       },
       {
+        path: 'dispatcher',
+        loadChildren: () =>
+          import(
+            '../../../app/modules/dispatcher/routes/dispatcher.routes'
+          ).then((m) => m.dispatcherRoutes),
+      },
+      {
         path: 'vehicles',
         loadChildren: () =>
           import('../../../app/modules/vehicle/routes/vehicle.routes').then(

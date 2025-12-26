@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>@if(!isEditMode){
+    <span>Add Vehicle</span>
+    }@else{
+    <span>Update Vehicle</span>
+    }
+</h2>
+<mat-dialog-content>
+    <div class="p-2">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <app-text-control [formControlModel]="addVehicleControl.licensePlate" [form]="form"></app-text-control>
+            <app-text-control [formControlModel]="addVehicleControl.VIN" [form]="form"></app-text-control>
+            <div class="row">
+                <div class="col">
+                    <app-select-control [formControlModel]="addVehicleControl.type" [form]="form"
+                        [options]="vehicleTypeOption">
+                    </app-select-control>
+                </div>
+                <div class="col">
+                    <app-text-control [formControlModel]="addVehicleControl.model" [form]="form"></app-text-control>
+                </div>
+            </div>
+            <app-text-control [formControlModel]="addVehicleControl.capacity" [form]="form"></app-text-control>
+            <app-text-control [formControlModel]="addVehicleControl.insuranceNumber" [form]="form"></app-text-control>
+            <app-date-picker [formControlModel]="addVehicleControl.insuranceExpiry" [form]="form"></app-date-picker>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <app-button label="Cancel" mat-dialog-close></app-button>
+    <app-button type="submit" label="Submit" class="btn btn-primary" (btnClick)="onSubmit()"></app-button>
+</mat-dialog-actions>

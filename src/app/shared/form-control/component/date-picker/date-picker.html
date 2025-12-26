@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-    <mat-form-field appearance="outline" [class]="formControlModel.isDisable ? `${class} date-disabled` : class"
+    <mat-form-field appearance="outline" [class]="'w-100'+class"
         [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
         <mat-label>{{ formControlModel.label }}</mat-label>
         <input matInput [matDatepickerFilter]="dateFilter1" [matDatepicker]="picker"

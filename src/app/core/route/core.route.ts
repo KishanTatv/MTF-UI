@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { AppPortal } from '../layout/app-portal';
 import { Dashboard } from '../../modules/dashboard/component/dashboard';
+import { authGuard } from '../guard/auth-guard';
+import { UserRole } from '../../shared/common/enumHelper';
 
 export const coreRoutes: Routes = [
   {
@@ -15,6 +17,8 @@ export const coreRoutes: Routes = [
       { path: 'dashboard', component: Dashboard },
       {
         path: 'users',
+        canActivate: [authGuard],
+        data: { role: [UserRole['Super Admin'], UserRole['Company Owner']] },
         loadChildren: () =>
           import('../../../app/modules/user/routes/user.routes').then(
             (m) => m.userRoutes

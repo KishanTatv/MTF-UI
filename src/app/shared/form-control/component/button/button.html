@@ -1,10 +1,10 @@
-<button mat-flat-button class="app-btn {{ class }}" [matTooltip]="tooltip" [disabled]="isDisabled" [type]="type"
-    (click)="onClick($any($event))">
-    @if (icon) {
-    <mat-icon class="btn-icon">{{ icon }}</mat-icon>
+<button mat-flat-button class="app-btn {{ class() }}" [matTooltip]="tooltip()" [disabled]="isDisabled()" [type]="type()"
+    (click)="onClick($event)">
+    @if (icon()) {
+    <mat-icon class="btn-icon">{{ icon() }}</mat-icon>
     }
 
     @if (width > 568 || !icon) {
-    <span class="btn-text">{{ label }}</span>
+    <span class="btn-text">{{ label() }}</span>
     }
 </button>

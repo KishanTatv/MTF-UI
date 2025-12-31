@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import {
   MatDatepickerInputEvent,
   MatDatepickerModule,
@@ -34,21 +34,21 @@ export const MY_FORMATS = {
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [provideMomentDateAdapter(MY_FORMATS)],
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.scss',
 })
 export class DatePicker {
-  @Input() formControlModel!: FormControlModel;
-  @Input() form!: FormGroup;
-  @Input() class = '';
-  @Input() min!: Date;
-  @Input() max!: Date;
-  @Input() disabledDates: Date[] = [];
-  @Input() dynamicHeight: boolean = false;
-  @Output() inputChange = new EventEmitter<string>();
+  formControlModel = input.required<FormControlModel>();
+  form = input.required<FormGroup>();
+  class = input<string>();
+  min = input<Date | null>(null);
+  max = input<Date | null>(null);
+  disabledDates = input<Date[]>([]);
+  dynamicHeight = input<boolean>(false);
+  inputChange = output<string>();
 
   constructor(public _validator: ValidatorService) {}
 
@@ -62,7 +62,7 @@ export class DatePicker {
 
   dateFilter1 = (date: Date | null): boolean => {
     if (!date) return true;
-    return !this.disabledDates.some((disabledDate) =>
+    return !this.disabledDates().some((disabledDate) =>
       this.isSameDate1(disabledDate, new Date(date))
     );
   };
@@ -78,9 +78,9 @@ export class DatePicker {
   get errorText(): string {
     return (
       this._validator.getError(
-        this.form,
-        this.formControlModel.key,
-        this.formControlModel
+        this.form(),
+        this.formControlModel().key,
+        this.formControlModel()
       ) || ''
     );
   }

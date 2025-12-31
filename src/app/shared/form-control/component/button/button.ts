@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -11,15 +11,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './button.scss',
 })
 export class Button {
-  @Input() color: 'flat' | 'stroked' | 'raised' = 'flat';
-  @Input() type = 'button';
-  @Input() tooltip = '';
-  @Input() isDisabled = false;
-  @Input() label!: string;
-  @Input() class = '';
-  @Input() id: string = '';
-  @Input() icon: string = '';
-  @Output() btnClick = new EventEmitter<Event>();
+  color = input<'flat' | 'stroked' | 'raised'>('flat');
+  type = input<string>('button');
+  tooltip = input<string>('');
+  isDisabled = input<boolean>(false);
+  label = input<string>();
+  class = input<string>('');
+  id = input<string>();
+  icon = input<string>();
+  btnClick = output<Event>();
   isHover: boolean = false;
   width = window.screen.width;
 

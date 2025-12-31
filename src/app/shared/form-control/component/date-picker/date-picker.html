@@ -1,12 +1,12 @@
-<ng-container [formGroup]="form">
+<ng-container [formGroup]="form()">
     <mat-form-field appearance="outline" [class]="'w-100'+class"
-        [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
-        <mat-label>{{ formControlModel.label }}</mat-label>
+        [subscriptSizing]="dynamicHeight() ? 'dynamic' : 'fixed'">
+        <mat-label>{{ formControlModel().label }}</mat-label>
         <input matInput [matDatepickerFilter]="dateFilter1" [matDatepicker]="picker"
-            [formControlName]="formControlModel.key" [id]="formControlModel.key" type="text"
-            (dateChange)="dateChange($event)" [min]="min" [max]="max" [readonly]="formControlModel.isDisable"
+            [formControlName]="formControlModel().key" [id]="formControlModel().key" type="text"
+            (dateChange)="dateChange($event)" [min]="min()" [max]="max()" [readonly]="formControlModel().isDisable"
             placeholder="DD-MM-YYYY" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formControlModel.isDisable">
+        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formControlModel().isDisable">
             <mat-icon matDatepickerToggleIcon>
                 calendar_month
             </mat-icon>

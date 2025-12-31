@@ -1,14 +1,9 @@
-import { Component, Input, input } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import {
   NgxMatDatepickerInput,
@@ -16,6 +11,9 @@ import {
 } from '@ngxmc/datetime-picker';
 import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { FormControlModel } from '../../interface/form-control.interface';
+import { ValidatorService } from '../../services/validator-service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export const DATE_TIME_FORMATS: MatDateFormats = {
   parse: {
@@ -39,20 +37,31 @@ export const DATE_TIME_FORMATS: MatDateFormats = {
     MatButtonModule,
     NgxMatDatetimepicker,
     NgxMatDatepickerInput,
+    MatTooltipModule,
     MatIconModule,
+    MatError,
   ],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: DATE_TIME_FORMATS }],
   templateUrl: './date-time-picker.html',
   styleUrl: './date-time-picker.scss',
 })
 export class DateTimePicker {
-  @Input() form: FormGroup;
-  @Input() minDate = new Date(2020, 0, 1);
-  @Input() maxDate = new Date(2030, 11, 31);
+  formControlModel = input.required<FormControlModel>();
+  form = input.required<FormGroup>();
+  class = input<string>();
+  min = input<Date | null>(null);
+  max = input<Date | null>(null);
   touchUi = false;
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      datetime: [new Date(), [Validators.required]],
-    });
+
+  constructor(public _validator: ValidatorService) {}
+
+  get errorText(): string {
+    return (
+      this._validator.getError(
+        this.form(),
+        this.formControlModel().key,
+        this.formControlModel()
+      ) || ''
+    );
   }
 }

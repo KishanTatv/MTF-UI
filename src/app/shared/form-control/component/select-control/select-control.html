@@ -1,35 +1,35 @@
-<div [formGroup]="form">
-    <mat-form-field appearance="outline" [class]="class"
-        [class.disable-select]="form.get(formControlModel.key)?.disabled"
-        [subscriptSizing]="dynamicHeight ? 'dynamic' : 'fixed'">
-        @if (formControlModel.label) {
-        <mat-label>{{ formControlModel.label }}</mat-label>
+<div [formGroup]="form()">
+    <mat-form-field appearance="outline" [class]="class()"
+        [class.disable-select]="form().get(formControlModel().key)?.disabled"
+        [subscriptSizing]="dynamicHeight() ? 'dynamic' : 'fixed'">
+        @if (formControlModel().label) {
+        <mat-label>{{ formControlModel().label }}</mat-label>
         }
-        <mat-select [formControlName]="formControlModel.key" [id]="formControlModel.key"
-            (selectionChange)="selection.emit($event)" [(ngModel)]="selected" [multiple]="isMultiple">
+        <mat-select [formControlName]="formControlModel().key" [id]="formControlModel().key"
+            (selectionChange)="selection.emit()" [(ngModel)]="selected" [multiple]="isMultiple()">
             <!-- Default Option -->
             <mat-option *ngIf="showDefaultOption" [value]="null">
-                {{ defaultText }}
+                {{ defaultText() }}
             </mat-option>
 
-            @if (enableSearch) {
+            @if (enableSearch()) {
             <mat-form-field [subscriptSizing]="'dynamic'" class="no-border" appearance="outline">
                 <input matInput (input)="filterOptions($event)" placeholder="Search options..." />
             </mat-form-field>
             } @if (getFilteredOptions()?.length == 0) {
             <mat-option [disabled]="true">
-                No {{ formControlModel.label?.replace("Select ", "") }} available
+                No {{ formControlModel().label?.replace("Select ", "") }} available
             </mat-option>
             } @for (item of getOptions(); track $index) {
             <mat-option [ngClass]="{ 'd-none': !getFilteredOptions()?.includes(item) }" [value]="item.id" [disabled]="
-            formControlModel.isDisable && selected != item.id ? true : false
+            formControlModel().isDisable && selected() != item.id ? true : false
           " (click)="optionClick.emit(item.id)">
                 {{ item.value }}
             </mat-option>
             }
         </mat-select>
         <mat-error>
-            {{ _validator.getError(form, formControlModel.key, formControlModel) }}
+            {{ _validator.getError(form(), formControlModel().key, formControlModel()) }}
         </mat-error>
     </mat-form-field>
 </div>

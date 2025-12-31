@@ -1,9 +1,9 @@
-<form [formGroup]="form">
+<form [formGroup]="form()">
     <mat-form-field appearance="fill">
-        <mat-label>Start Date</mat-label>
+        <mat-label>{{formControlModel().label}}</mat-label>
 
-        <input matInput [ngxMatDatetimePicker]="picker" formControlName="datetime" [min]="minDate" [max]="maxDate"
-            placeholder="Choose a date" />
+        <input matInput [ngxMatDatetimePicker]="picker" [formControlName]="formControlModel().key" [min]="min"
+            [max]="max" placeholder="Choose a date" />
 
         <button matSuffix mat-icon-button type="button" (click)="picker.open()">
             <mat-icon>calendar_today</mat-icon>
@@ -11,5 +11,15 @@
 
         <ngx-mat-datetime-picker #picker [touchUi]="touchUi">
         </ngx-mat-datetime-picker>
+
+        <mat-error>
+            @if(errorText.length > 45) {
+            <span [matTooltip]="errorText">
+                {{ errorText.substring(0, 45).concat("...") }}
+            </span>
+            } @else {
+            {{ errorText }}
+            }
+        </mat-error>
     </mat-form-field>
 </form>

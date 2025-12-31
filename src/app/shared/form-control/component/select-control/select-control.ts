@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -27,23 +27,23 @@ import {
   styleUrl: './select-control.scss',
 })
 export class SelectControl {
-  @Input() formControlModel!: FormControlModel;
-  @Input() form!: FormGroup;
-  @Input() class = '';
-  @Input() selected: string | number | null | string[] | number[] = null;
-  @Input() dynamicHeight: boolean = false;
-  @Input() options: ISelectOptionModel[] | null = [];
-  @Output() selection = new EventEmitter();
-  @Output() optionClick = new EventEmitter();
-  @Input() enableSearch: boolean = false;
-  @Input() showDefaultOption: boolean = false;
-  @Input() defaultText: string = '--- Select ---';
-  @Input() isMultiple: boolean = false;
+  formControlModel = input.required<FormControlModel>();
+  form = input.required<FormGroup>();
+  class = input<string>('');
+  selected = input<string | number | null>(null);
+  dynamicHeight = input<boolean>(false);
+  options = input<ISelectOptionModel[] | null>([]);
+  selection = output<void>();
+  optionClick = output<string | number>();
+  enableSearch = input<boolean>(false);
+  showDefaultOption = input<boolean>(false);
+  defaultText = input<string>('--- Select ---');
+  isMultiple = input<boolean>(false);
   searchTerm: string = '';
   constructor(public _validator: ValidatorService) {}
 
   getOptions() {
-    const formControlModel = this.options;
+    const formControlModel = this.options();
     if (formControlModel) {
       return formControlModel;
     }
@@ -51,7 +51,7 @@ export class SelectControl {
   }
 
   getFilteredOptions() {
-    return this.options?.filter((x: any) =>
+    return this.options()?.filter((x: any) =>
       x.value.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }

@@ -4,3 +4,10 @@ export enum UserRole {
   'Dispatcher' = 3,
   'Driver' = 4,
 }
+
+export enum TripStatus {
+  Planned = 1,
+  InProgress = 2,
+  Completed = 3,
+  Cancelled = 4,
+}

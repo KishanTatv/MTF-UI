@@ -45,14 +45,14 @@ export class AddDriver {
     private snackbar: SnackBar
   ) {}
   ngOnInit(): void {
-    this.createLoginForm();
+    this.createForm();
     if (this.data.userId > 0) {
       this.isEditMode = true;
       this.getUserData(this.data.userId);
     }
   }
 
-  createLoginForm() {
+  createForm() {
     this.form = this.fb.group({
       userId: [null],
       firstName: [

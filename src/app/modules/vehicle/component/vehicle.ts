@@ -12,7 +12,12 @@ import { AddVehicle } from './add-vehicle/add-vehicle';
 
 @Component({
   selector: 'app-vehicle',
-  imports: [Button, MatTableModule, CommonModule, MatIconModule],
+  imports: [
+    Button,
+    MatTableModule,
+    CommonModule,
+    MatIconModule,
+  ],
   templateUrl: './vehicle.html',
   styleUrl: './vehicle.scss',
 })

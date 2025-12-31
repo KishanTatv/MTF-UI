@@ -46,14 +46,14 @@ export class AddVehicle {
     private snackbar: SnackBar
   ) {}
   ngOnInit(): void {
-    this.createLoginForm();
+    this.createForm();
     if (this.data.vehicleId > 0) {
       this.isEditMode = true;
       this.getVehicleData(this.data.vehicleId);
     }
   }
 
-  createLoginForm() {
+  createForm() {
     this.form = this.fb.group({
       vehicleId: [null],
       licensePlate: [

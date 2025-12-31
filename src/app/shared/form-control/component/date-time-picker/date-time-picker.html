@@ -1,9 +1,11 @@
 <form [formGroup]="form()">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline" [class]="class()"
+        [class.disable-select]="form().get(formControlModel().key)?.disabled"
+        [subscriptSizing]="dynamicHeight() ? 'dynamic' : 'fixed'">
         <mat-label>{{formControlModel().label}}</mat-label>
 
-        <input matInput [ngxMatDatetimePicker]="picker" [formControlName]="formControlModel().key" [min]="min"
-            [max]="max" placeholder="Choose a date" />
+        <input matInput [ngxMatDatetimePicker]="picker" [formControlName]="formControlModel().key"
+            [id]="formControlModel().key" [min]="min" [max]="max" placeholder="Choose a date" />
 
         <button matSuffix mat-icon-button type="button" (click)="picker.open()">
             <mat-icon>calendar_today</mat-icon>

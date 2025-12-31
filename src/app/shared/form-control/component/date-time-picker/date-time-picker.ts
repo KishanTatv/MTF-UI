@@ -10,7 +10,10 @@ import {
   NgxMatDatetimepicker,
 } from '@ngxmc/datetime-picker';
 import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {
+  MatMomentDateModule,
+  provideMomentDateAdapter,
+} from '@angular/material-moment-adapter';
 import { FormControlModel } from '../../interface/form-control.interface';
 import { ValidatorService } from '../../services/validator-service';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -41,7 +44,10 @@ export const DATE_TIME_FORMATS: MatDateFormats = {
     MatIconModule,
     MatError,
   ],
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: DATE_TIME_FORMATS }],
+  providers: [
+    provideMomentDateAdapter(),
+    { provide: MAT_DATE_FORMATS, useValue: DATE_TIME_FORMATS },
+  ],
   templateUrl: './date-time-picker.html',
   styleUrl: './date-time-picker.scss',
 })
@@ -49,6 +55,7 @@ export class DateTimePicker {
   formControlModel = input.required<FormControlModel>();
   form = input.required<FormGroup>();
   class = input<string>();
+  dynamicHeight = input<boolean>(false);
   min = input<Date | null>(null);
   max = input<Date | null>(null);
   touchUi = false;

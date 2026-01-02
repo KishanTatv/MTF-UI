@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -24,7 +24,7 @@ import { UserRole } from '../../../../shared/common/enumHelper';
   templateUrl: './add-dispacther.html',
   styleUrl: './add-dispacther.scss',
 })
-export class AddDispacther {
+export class AddDispacther implements OnInit {
   form!: FormGroup;
   addUserControl = userControl;
   readonly dialogRef = inject(MatDialogRef<AddDispacther>);

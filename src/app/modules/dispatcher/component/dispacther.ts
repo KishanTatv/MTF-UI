@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal, OnInit } from '@angular/core';
 import { Button } from '../../../shared/form-control/component/button/button';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { AlertDialog } from '../../../shared/dialog/alert-dialog/alert-dialog';
   templateUrl: './dispacther.html',
   styleUrl: './dispacther.scss',
 })
-export class Dispacther {
+export class Dispacther implements OnInit {
   readonly dialog = inject(MatDialog);
   driverList: WritableSignal<IUserModel[]> = signal([]);
   displayedColumns: string[] = [

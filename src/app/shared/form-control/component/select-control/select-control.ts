@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, AfterViewChecked } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -26,7 +26,7 @@ import {
   templateUrl: './select-control.html',
   styleUrl: './select-control.scss',
 })
-export class SelectControl {
+export class SelectControl implements AfterViewChecked {
   formControlModel = input.required<FormControlModel>();
   form = input.required<FormGroup>();
   class = input<string>('');
@@ -39,7 +39,7 @@ export class SelectControl {
   showDefaultOption = input<boolean>(false);
   defaultText = input<string>('--- Select ---');
   isMultiple = input<boolean>(false);
-  searchTerm: string = '';
+  searchTerm = '';
   constructor(public _validator: ValidatorService) {}
 
   getOptions() {

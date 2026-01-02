@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Button } from '../../../shared/form-control/component/button/button';
@@ -21,7 +21,7 @@ import { AddVehicle } from './add-vehicle/add-vehicle';
   templateUrl: './vehicle.html',
   styleUrl: './vehicle.scss',
 })
-export class Vehicle {
+export class Vehicle implements OnInit {
   readonly dialog = inject(MatDialog);
   vehicleList: WritableSignal<IVehicleModel[]> = signal([]);
   displayedColumns: string[] = [

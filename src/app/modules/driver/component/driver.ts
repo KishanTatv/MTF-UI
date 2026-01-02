@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDriver } from './add-driver/add-driver';
 import { Button } from '../../../shared/form-control/component/button/button';
@@ -18,7 +18,7 @@ import { SnackBar } from '../../../shared/service/snackbar/snack-bar';
   templateUrl: './driver.html',
   styleUrl: './driver.scss',
 })
-export class Driver {
+export class Driver implements OnInit {
   readonly dialog = inject(MatDialog);
   driverList: WritableSignal<IUserModel[]> = signal([]);
   displayedColumns: string[] = [

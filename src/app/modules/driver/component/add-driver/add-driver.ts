@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -32,7 +32,7 @@ import { SnackBar } from '../../../../shared/service/snackbar/snack-bar';
   templateUrl: './add-driver.html',
   styleUrl: './add-driver.scss',
 })
-export class AddDriver {
+export class AddDriver implements OnInit {
   form!: FormGroup;
   addUserControl = userControl;
   readonly dialogRef = inject(MatDialogRef<AddDriver>);

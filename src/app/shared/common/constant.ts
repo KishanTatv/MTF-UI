@@ -8,6 +8,7 @@ export const specificDateFormats = {
   MMMdd_yyyy: 'MMM dd, yyyy',
   MMM_YYYY: 'MMM YYYY',
   MMMM_YYYY: 'MMMM YYYY',
+  dd_MMM_YYYY_HH_MM: 'dd-MMM-yyyy hh:mm a'
 };
 
 export const AuthInfoKeys = {

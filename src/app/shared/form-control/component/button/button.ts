@@ -20,7 +20,7 @@ export class Button {
   id = input<string>();
   icon = input<string>();
   btnClick = output<Event>();
-  isHover: boolean = false;
+  isHover = false;
   width = window.screen.width;
 
   onClick(event: Event) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TextControl } from '../../../shared/form-control/component/text-control/text-control';
 import { Button } from '../../../shared/form-control/component/button/button';
 import {
@@ -30,10 +30,10 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
-export class Register {
+export class Register implements OnInit {
   form!: FormGroup;
   signupControl = signupControl;
-  generatedCaptcha: string = '';
+  generatedCaptcha = '';
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

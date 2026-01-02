@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SnackBar } from '../../../../shared/service/snackbar/snack-bar';
 import {
   FormBuilder,
@@ -32,7 +32,7 @@ import { validation } from '../../../../shared/common/constant';
   templateUrl: './add-vehicle.html',
   styleUrl: './add-vehicle.scss',
 })
-export class AddVehicle {
+export class AddVehicle implements OnInit {
   form!: FormGroup;
   addVehicleControl = vehicleControl;
   vehicleTypeOption = vehicleTypeOption;

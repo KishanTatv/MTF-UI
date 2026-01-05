@@ -72,6 +72,7 @@ body {
 }
 
 .mat-mdc-form-field {
+  width: -webkit-fill-available;
   --mdc-outlined-text-field-outline-color: #d0d5dd;
   --mdc-outlined-text-field-focus-outline-color: #2563eb;
   --mdc-outlined-text-field-label-text-color: #667085;

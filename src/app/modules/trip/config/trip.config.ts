@@ -1,0 +1,61 @@
+import { ValidationMessages } from '../../../shared/common/constant';
+
+export const tripControl = {
+  vehicle: {
+    value: '',
+    key: 'vehicleId',
+    label: 'Vehicle',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('Vehicle'),
+  },
+  driver: {
+    value: '',
+    key: 'driverId',
+    label: 'Driver',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('Driver'),
+  },
+  origin: {
+    value: '',
+    key: 'origin',
+    label: 'Start Place',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('Start Place'),
+    minLengthError: ValidationMessages.minLength('Start Place', 3),
+    maxLengthError: ValidationMessages.maxLength('Start Place', 20),
+    patternErrMsg: ValidationMessages.pattern('Start Place'),
+  },
+  destination: {
+    value: '',
+    key: 'destination',
+    label: 'End Place',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('End Place'),
+    minLengthError: ValidationMessages.minLength('End Place', 3),
+    maxLengthError: ValidationMessages.maxLength('End Place', 20),
+    patternErrMsg: ValidationMessages.pattern('End Place'),
+  },
+  startTime: {
+    value: '',
+    key: 'startTime',
+    label: 'Start Time',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('Start Time'),
+    patternErrMsg: ValidationMessages.pattern('Start Time'),
+  },
+  endTime: {
+    value: '',
+    key: 'endTime',
+    label: 'End Time',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('End Time'),
+    patternErrMsg: ValidationMessages.pattern('End Time'),
+  },
+  status: {
+    value: '',
+    key: 'status',
+    label: 'Status',
+    inputType: 'text',
+    requiredErrMsg: ValidationMessages.required('Status'),
+  },
+};

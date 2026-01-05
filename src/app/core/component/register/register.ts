@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { CaptchaCharacters, validation } from '../../../shared/common/constant';
 import { AuthService } from '../../services/auth-service';
-import { LocalStorage } from '../../../shared/service/local-storage/local-storage';
 import { SnackBar } from '../../../shared/service/snackbar/snack-bar';
 import { passwordMatchAsyncValidator } from '../../../shared/service/validators/passwordMatchAsyncValidator';
 import { signupControl } from '../../config/auth.config';

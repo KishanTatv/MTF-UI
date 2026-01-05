@@ -1,1 +1,41 @@
-<p>add-trip works!</p>
+<h2 mat-dialog-title>@if(!isEditMode){
+    <span>Add Trip</span>
+    }@else{
+    <span>Update Trip</span>
+    }
+</h2>
+<mat-dialog-content>
+    <div class="p-2">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <app-select-control [formControlModel]="addTripControl.vehicle" [form]="form"
+                        [options]="vehicleOption">
+                    </app-select-control>
+                </div>
+                <div class="col">
+                    <app-select-control [formControlModel]="addTripControl.driver" [form]="form"
+                        [options]="driverOption">
+                    </app-select-control>
+                </div>
+            </div>
+            <app-text-control [formControlModel]="addTripControl.origin" [form]="form"></app-text-control>
+            <app-text-control [formControlModel]="addTripControl.destination" [form]="form"></app-text-control>
+            <div class="row">
+                <div class="col">
+                    <app-date-time-picker [formControlModel]="addTripControl.startTime"
+                        [form]="form"></app-date-time-picker>
+                </div>
+                <div class="col">
+                    <app-date-time-picker [formControlModel]="addTripControl.endTime"
+                        [form]="form" [min]="form.value.startTime" ></app-date-time-picker>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <app-button label="Cancel" mat-dialog-close></app-button>
+    <app-button type="submit" label="Submit" class="btn btn-primary" (btnClick)="onSubmit()"></app-button>
+</mat-dialog-actions>

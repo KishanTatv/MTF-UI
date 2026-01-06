@@ -33,12 +33,13 @@ export class Trip implements OnInit {
     'destination',
     'endTime',
     'status',
+    'trip',
     'tripId',
   ];
   readonly dialog = inject(MatDialog);
   tripList: WritableSignal<ITripList[]> = signal([]);
   tripStatus = TripStatus;
-  dateFormatHHMM = specificDateFormats.dd_MMM_YYYY_HH_MM;
+  dateFormatHHMM: string = specificDateFormats.dd_MMM_YYYY_HH_MM;
 
   private readonly tripService = inject(TripService);
   private readonly snackbar = inject(SnackBar);
@@ -56,6 +57,33 @@ export class Trip implements OnInit {
       },
       error: (err) => {},
     });
+  }
+
+  markTripInprogress(tripId: number) {
+    this.tripService.markTripInprogress(tripId).subscribe({
+      next: (res) => {
+        if (res.result) {
+          this.snackbar.success(res.message);
+          this.getTripData();
+        } else {
+          this.snackbar.error(res.message);
+        }
+      },
+      error: (err) => {
+        this.snackbar.error('Try Later!');
+      },
+    });
+  }
+
+  dateIsCurrentDate(startTimeDate: string): boolean {
+    const today = new Date();
+    const startDate = new Date(startTimeDate);
+    today.setHours(0, 0, 0, 0);
+    startDate.setHours(0, 0, 0, 0);
+    return (
+      today.getTime() == startDate.getTime() &&
+      new Date(startTimeDate) >= new Date()
+    );
   }
 
   openDialog(tripId?: number) {

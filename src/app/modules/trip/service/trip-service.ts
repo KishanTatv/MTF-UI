@@ -36,4 +36,10 @@ export class TripService {
   deleteTrip(tripId: number): Observable<IResponseModel<string>> {
     return this.http.httpDelete<string>('Admin/DeleteTrip?tripId=' + tripId);
   }
+
+  markTripInprogress(tripId: number): Observable<IResponseModel<string>> {
+    return this.http.httpGet<string>(
+      `Admin/MarkTripAsInprogress?tripId=${tripId}`
+    );
+  }
 }

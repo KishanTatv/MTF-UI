@@ -1,5 +1,5 @@
 <div class="portal-layout">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [role]="userInfo?.role!"></app-sidebar>
     <div class="main-area">
         <app-header [userData]="userInfo!"></app-header>
         <main class="content">

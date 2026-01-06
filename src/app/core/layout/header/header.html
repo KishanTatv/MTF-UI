@@ -1,6 +1,6 @@
 <header class="topbar">
     <div class="topbar-left">
-        <h6 class="mb-0">Tenant: {{userData?.tenant}}</h6>
+        <h6 class="mb-0">Tenant: {{userData()?.tenant}}</h6>
     </div>
 
     <div class="topbar-right">
@@ -22,7 +22,7 @@
         </mat-menu>
 
         <!-- Profile -->
-        <span class="user-name">{{userData?.username}}</span>
+        <span class="user-name">{{userData()?.username}} ({{userRole[accountUserRole]}})</span>
         <button mat-icon-button [matMenuTriggerFor]="profileMenu">
             <mat-icon>account_circle</mat-icon>
         </button>

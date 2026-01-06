@@ -14,7 +14,7 @@ export const coreRoutes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
-      { path: 'dashboard', component: Dashboard },
+      { canActivate: [authGuard], path: 'dashboard', component: Dashboard },
       {
         path: 'users',
         canActivate: [authGuard],
@@ -26,6 +26,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'drivers',
+        canActivate: [authGuard],
         loadChildren: () =>
           import('../../../app/modules/driver/routes/driver.routes').then(
             (m) => m.driverRoutes
@@ -33,6 +34,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'dispatcher',
+        canActivate: [authGuard],
         loadChildren: () =>
           import(
             '../../../app/modules/dispatcher/routes/dispatcher.routes'
@@ -40,6 +42,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'vehicles',
+        canActivate: [authGuard],
         loadChildren: () =>
           import('../../../app/modules/vehicle/routes/vehicle.routes').then(
             (m) => m.vehicleRoutes
@@ -47,6 +50,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'trips',
+        canActivate: [authGuard],
         loadChildren: () =>
           import('../../../app/modules/trip/routes/trip.routes').then(
             (m) => m.tripRoutes
@@ -54,6 +58,7 @@ export const coreRoutes: Routes = [
       },
       {
         path: 'company',
+        canActivate: [authGuard],
         loadChildren: () =>
           import('../../../app/modules/company/routes/company.route').then(
             (m) => m.companyRoutes

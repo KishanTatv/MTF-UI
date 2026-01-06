@@ -9,11 +9,21 @@
             Dashboard
         </a>
 
+        @if(isAdmin){
+        <a routerLink="/users" routerLinkActive="active">
+            <mat-icon>person_4</mat-icon>
+            Tenant Company
+        </a>
+        }
+
+        @if(isAdmin || isCompanyOwner){
         <a routerLink="/users" routerLinkActive="active">
             <mat-icon>person_4</mat-icon>
             Users
         </a>
+        }
 
+        @if(isAdmin || isCompanyOwner || isDispatcher){
         <a routerLink="/vehicles" routerLinkActive="active">
             <mat-icon>local_shipping</mat-icon>
             Vehicles
@@ -33,10 +43,18 @@
             <mat-icon>route</mat-icon>
             Trips
         </a>
+        }
 
         <a routerLink="/reports" routerLinkActive="active">
             <mat-icon>analytics</mat-icon>
             Reports
         </a>
+
+        @if(isAdmin){
+        <a routerLink="/management" routerLinkActive="active">
+            <mat-icon>analytics</mat-icon>
+            Management
+        </a>
+        }
     </nav>
 </aside>

@@ -1,5 +1,9 @@
 <div class="container-fluid dashboard-container">
 
+    @if(userRole['Super Admin'] == role){
+    <p>Admin</p>
+    }
+    @else if(userRole['Company Owner'] == role){
     <!-- KPI Cards -->
     <div class="row g-3 mb-4">
         <div class="col-md-3">
@@ -94,5 +98,9 @@
             </div>
         </div>
     </div>
+    }
+    @else{
+    <P>Hello</P>
+    }
 
 </div>

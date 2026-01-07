@@ -1,1 +1,21 @@
 <p>company works!</p>
+
+<h2>Trip</h2>
+
+<div class="table-wrapper">
+    <table mat-table [dataSource]="companyData()" class="mat-elevation-z8">
+        <ng-container matColumnDef="tenantName">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let item"> {{item.tenantName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="contactEmail">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let item"> {{item.contactEmail}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

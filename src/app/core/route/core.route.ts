@@ -57,7 +57,7 @@ export const coreRoutes: Routes = [
           ),
       },
       {
-        path: 'company',
+        path: 'tenant',
         canActivate: [authGuard],
         loadChildren: () =>
           import('../../../app/modules/company/routes/company.route').then(

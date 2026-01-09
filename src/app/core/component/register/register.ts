@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TextControl } from '../../../shared/form-control/component/text-control/text-control';
 import { Button } from '../../../shared/form-control/component/button/button';
 import {
@@ -33,12 +33,10 @@ export class Register implements OnInit {
   form!: FormGroup;
   signupControl = signupControl;
   generatedCaptcha = '';
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private snackbar: SnackBar
-  ) {}
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly snackbar = inject(SnackBar);
 
   ngOnInit(): void {
     this.createSignUpForm();
@@ -123,7 +121,6 @@ export class Register implements OnInit {
             this.snackbar.error(res.message);
           }
         },
-        error: (err) => {},
       });
     } else {
       this.snackbar.error('Form is incorrect !');

@@ -37,14 +37,12 @@ export class AddVehicle implements OnInit {
   addVehicleControl = vehicleControl;
   vehicleTypeOption = vehicleTypeOption;
   readonly dialogRef = inject(MatDialogRef<AddVehicle>);
-  readonly data = inject<any>(MAT_DIALOG_DATA);
+  readonly data = inject<{vehicleId: number}>(MAT_DIALOG_DATA);
   isEditMode = false;
+  private readonly vehicleService = inject(VehicleService);
+  private readonly snackbar = inject(SnackBar);
+  private readonly fb = inject(FormBuilder);
 
-  constructor(
-    private fb: FormBuilder,
-    private vehicleService: VehicleService,
-    private snackbar: SnackBar
-  ) {}
   ngOnInit(): void {
     this.createForm();
     if (this.data.vehicleId > 0) {
@@ -121,7 +119,6 @@ export class AddVehicle implements OnInit {
             this.snackbar.error(res.message);
           }
         },
-        error: (err) => {},
       });
     }
   }

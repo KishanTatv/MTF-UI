@@ -7,18 +7,26 @@
         <!-- Notifications -->
         <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
             <mat-icon>notifications</mat-icon>
-            <span class="badge" *ngIf="notifications.length">{{ notifications.length }}</span>
+            @if(notifications.length){
+            <span class="badge">{{ notifications.length }}</span>
+            }
         </button>
         <mat-menu #notificationsMenu="matMenu">
-            <ng-container *ngIf="notifications.length; else noNotifications">
-                <button mat-menu-item *ngFor="let n of notifications">
+            @if(notifications.length){
+            <ng-container>
+                @for(n of notifications;track n){
+                <button mat-menu-item>
                     <mat-icon>info</mat-icon>
                     <span>{{ n.message }}</span>
                 </button>
+                }
             </ng-container>
-            <ng-template #noNotifications>
+            }
+            @else{
+            <ng-template>
                 <span class="px-4 py-2 d-block text-muted">No notifications</span>
             </ng-template>
+            }
         </mat-menu>
 
         <!-- Profile -->

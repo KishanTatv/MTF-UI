@@ -5,7 +5,7 @@ import { SnackBar } from '../../shared/service/snackbar/snack-bar';
 import { LocalStorage } from '../../shared/service/local-storage/local-storage';
 import { AuthInfoKeys } from '../../shared/common/constant';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const jwtHelperService = inject(JwtHelperService);
   const snackbarService = inject(SnackBar);
@@ -65,7 +65,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     snackbarService.error('Invalid or corrupted token.');
     router.navigateByUrl(LogIn_Route);
     return false;
-  } catch (error) {
+  } catch {
     snackbarService.error('Invalid or corrupted token.');
     router.navigateByUrl(LogIn_Route);
     return false;

@@ -49,7 +49,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
 };
 
-function setHeader(req: HttpRequest<any>, token: string): HttpRequest<any> {
+function setHeader(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
   req = req.clone({
     headers: req.headers.set('Authorization', `Bearer ${token}`),
   });

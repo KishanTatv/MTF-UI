@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -36,14 +35,12 @@ export class AddDriver implements OnInit {
   form!: FormGroup;
   addUserControl = userControl;
   readonly dialogRef = inject(MatDialogRef<AddDriver>);
-  readonly data = inject<any>(MAT_DIALOG_DATA);
+  readonly data = inject<{userId: number}>(MAT_DIALOG_DATA);
   isEditMode = false;
+  private readonly fb = inject(FormBuilder);
+  private readonly userService = inject(UserService);
+  private readonly snackbar = inject(SnackBar);
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private snackbar: SnackBar
-  ) {}
   ngOnInit(): void {
     this.createForm();
     if (this.data.userId > 0) {
@@ -115,7 +112,6 @@ export class AddDriver implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {},
         });
       } else {
         this.userService.addUser(this.form.value).subscribe({
@@ -127,7 +123,6 @@ export class AddDriver implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {},
         });
       }
     } else {

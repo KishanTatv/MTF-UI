@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -60,7 +60,7 @@ export class DateTimePicker {
   max = input<Date | null>(null);
   touchUi = false;
 
-  constructor(public _validator: ValidatorService) {}
+  private readonly _validator = inject(ValidatorService);
 
   get errorText(): string {
     return (

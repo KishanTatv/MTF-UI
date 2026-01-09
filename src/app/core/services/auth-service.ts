@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpHandler } from '../../shared/service/http-handler/http-handler';
 import { Observable, tap } from 'rxjs';
 import { IResponseModel } from '../../shared/common/response.interface';
@@ -13,10 +13,8 @@ import { LocalStorage } from '../../shared/service/local-storage/local-storage';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private readonly http: HttpHandler,
-    private storageService: LocalStorage
-  ) {}
+  private readonly http = inject(HttpHandler);
+  private readonly storageService = inject(LocalStorage);
 
   register(loginData: IRegisterModel): Observable<IResponseModel<string>> {
     return this.http.httpPost<string>('Auth/Registration', loginData);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Header } from './header/header';
 import { Sidebar } from './sidebar/sidebar';
 import { RouterOutlet } from '@angular/router';
@@ -15,10 +15,8 @@ import { IJwtClaims } from '../interface/auth.interface';
 })
 export class AppPortal implements OnInit {
   userInfo!: IJwtClaims | null;
-  constructor(
-    private storageService: LocalStorage,
-    private jwtHelperService: JwtHelperService
-  ) {}
+  private readonly storageService = inject(LocalStorage);
+  private readonly jwtHelperService = inject(JwtHelperService);
 
   ngOnInit(): void {
     this.userInfo = this.jwtHelperService.decodeToken(

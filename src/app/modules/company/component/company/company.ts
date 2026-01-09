@@ -31,7 +31,6 @@ export class Company implements OnInit {
           this.companyData.set(res.data);
         }
       },
-      error: (err) => {},
     });
   }
 }

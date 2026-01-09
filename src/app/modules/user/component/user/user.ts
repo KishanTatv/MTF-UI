@@ -1,6 +1,6 @@
 import {
-  ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
   signal,
   WritableSignal,
@@ -17,8 +17,7 @@ import { UserRole } from '../../../../shared/common/enumHelper';
   styleUrl: './user.scss',
 })
 export class User implements OnInit {
-  userList: IUserModel[] = [];
-  // userList: WritableSignal<IUserModel[]> = signal([]);
+  userList: WritableSignal<IUserModel[]> = signal([]);
   UserRole = UserRole;
   displayedColumns: string[] = [
     'firstName',
@@ -27,11 +26,7 @@ export class User implements OnInit {
     'role',
     'phone',
   ];
-
-  constructor(
-    private userService: UserService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  private readonly userService = inject(UserService);
 
   ngOnInit(): void {
     this.getUserData();
@@ -41,12 +36,9 @@ export class User implements OnInit {
     this.userService.getUserList().subscribe({
       next: (res) => {
         if (res.result) {
-          // this.userList.set(res.data);
-          this.userList = res.data;
-          this.cdr.detectChanges();
+          this.userList.set(res.data);
         }
       },
-      error: (err) => {},
     });
   }
 }

@@ -5,7 +5,6 @@ import { AuthInfoKeys } from '../../common/constant';
   providedIn: 'root',
 })
 export class LocalStorage {
-  constructor() {}
 
   get(key: string): string | null {
     return localStorage.getItem(key);

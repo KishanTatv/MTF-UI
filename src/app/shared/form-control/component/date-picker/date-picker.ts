@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import {
   MatDatepickerInputEvent,
   MatDatepickerModule,
@@ -50,10 +50,10 @@ export class DatePicker {
   dynamicHeight = input<boolean>(false);
   inputChange = output<string>();
 
-  constructor(public _validator: ValidatorService) {}
+  private readonly _validator = inject(ValidatorService);
 
-  dateChange(event: MatDatepickerInputEvent<any, any>) {
-    const selectedDate = event.value;
+  dateChange(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate = event.value || "";
     const formattedDate: string = selectedDate
       ? new Date(selectedDate).toLocaleDateString('sv-SE')
       : selectedDate;

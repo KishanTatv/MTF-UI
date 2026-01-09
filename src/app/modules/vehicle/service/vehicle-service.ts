@@ -1,5 +1,5 @@
 import { HttpHandler } from '../../../shared/service/http-handler/http-handler';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IResponseModel } from '../../../shared/common/response.interface';
 import { IVehicleModel } from '../interface/vehicle.interface';
@@ -8,7 +8,7 @@ import { IVehicleModel } from '../interface/vehicle.interface';
   providedIn: 'root',
 })
 export class VehicleService {
-  constructor(private http: HttpHandler) {}
+  private readonly http = inject(HttpHandler);
 
   getVehicleList(): Observable<IResponseModel<IVehicleModel[]>> {
     return this.http.httpGet<IVehicleModel[]>(`Admin/GetVehicleList`);

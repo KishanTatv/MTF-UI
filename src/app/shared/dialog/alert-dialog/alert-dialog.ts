@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Button } from '../../form-control/component/button/button';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -15,11 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './alert-dialog.scss',
 })
 export class AlertDialog {
-  constructor(
-    public deleteConfirmationModalRef: MatDialogRef<AlertDialog>,
-    @Inject(MAT_DIALOG_DATA)
-    public data: { title: string; desc: string; data?: any }
-  ) {}
+  public deleteConfirmationModalRef = inject(MatDialogRef<AlertDialog>);
+  public data: { title: string; desc: string; data?: string | object } =
+    inject(MAT_DIALOG_DATA);
 
   onConfirmClick(): void {
     this.deleteConfirmationModalRef.close({

@@ -52,8 +52,8 @@
         <ng-container matColumnDef="trip">
             <th mat-header-cell *matHeaderCellDef> Make As In-Progress </th>
             <td mat-cell *matCellDef="let item">
-                @if(item.status == 1 && dateIsCurrentDate(item.startTime)){
-                    <mat-icon (click)="markTripInprogress(item.tripId)">check</mat-icon>
+                @if(item.status === 1 && dateIsCurrentDate(item.startTime)){
+                <mat-icon (click)="markTripInprogress(item.tripId)">check</mat-icon>
                 }
             </td>
         </ng-container>

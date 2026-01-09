@@ -11,10 +11,10 @@ import { UserRole } from '../../../shared/common/enumHelper';
 })
 export class Sidebar implements OnInit {
   role = input<string>('');
-  isCompanyOwner: boolean = false;
-  isAdmin: boolean = false;
-  isDispatcher: boolean = false;
-  isDriver: boolean = false;
+  isCompanyOwner = false;
+  isAdmin = false;
+  isDispatcher = false;
+  isDriver = false;
 
   ngOnInit(): void {
     this.isAdmin = UserRole['Super Admin'] == Number(this.role());

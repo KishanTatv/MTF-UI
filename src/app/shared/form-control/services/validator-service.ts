@@ -6,8 +6,6 @@ import { FormControlModel } from '../interface/form-control.interface';
   providedIn: 'root',
 })
 export class ValidatorService {
-  constructor() {}
-
   getError(form: FormGroup, field: string, formControlModel: FormControlModel) {
     const formControl = form.get(field);
 

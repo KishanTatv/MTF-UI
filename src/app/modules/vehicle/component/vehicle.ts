@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, WritableSignal, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  WritableSignal,
+  OnInit,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Button } from '../../../shared/form-control/component/button/button';
@@ -12,12 +18,7 @@ import { AddVehicle } from './add-vehicle/add-vehicle';
 
 @Component({
   selector: 'app-vehicle',
-  imports: [
-    Button,
-    MatTableModule,
-    CommonModule,
-    MatIconModule,
-  ],
+  imports: [Button, MatTableModule, CommonModule, MatIconModule],
   templateUrl: './vehicle.html',
   styleUrl: './vehicle.scss',
 })
@@ -34,11 +35,8 @@ export class Vehicle implements OnInit {
     'insuranceExpiry',
     'vehicleId',
   ];
-
-  constructor(
-    private vehicleService: VehicleService,
-    private snackbar: SnackBar
-  ) {}
+  private readonly vehicleService = inject(VehicleService);
+  private readonly snackbar = inject(SnackBar);
 
   ngOnInit(): void {
     this.getVehicleData();
@@ -82,7 +80,6 @@ export class Vehicle implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {},
         });
       }
     });

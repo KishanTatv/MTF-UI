@@ -38,10 +38,10 @@ export class AddTrip implements OnInit {
   addTripControl = tripControl;
   driverOption: ISelectOptionModel[] = [];
   vehicleOption: ISelectOptionModel[] = [];
-  isEditMode  = false;
+  isEditMode = false;
 
   private readonly dialogRef = inject(MatDialogRef<AddTrip>);
-  private readonly data = inject<any>(MAT_DIALOG_DATA);
+  private readonly data = inject<{tripId: number}>(MAT_DIALOG_DATA);
   private readonly fb = inject(FormBuilder);
   private readonly tripService = inject(TripService);
   private readonly snackbar = inject(SnackBar);
@@ -76,7 +76,6 @@ export class AddTrip implements OnInit {
           this.vehicleOption = res.data.vehicles;
         }
       },
-      error: (err) => {},
     });
   }
 
@@ -101,7 +100,6 @@ export class AddTrip implements OnInit {
             this.snackbar.error(res.message);
           }
         },
-        error: (err) => {},
       });
     }
   }

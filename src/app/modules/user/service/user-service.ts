@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpHandler } from '../../../shared/service/http-handler/http-handler';
 import { IResponseModel } from '../../../shared/common/response.interface';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { IUserModel } from '../interface/user-interface';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpHandler) {}
+  private readonly http = inject(HttpHandler);
 
   getUserList(role?: number): Observable<IResponseModel<IUserModel[]>> {
     return this.http.httpGet<IUserModel[]>(

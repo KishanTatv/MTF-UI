@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorage } from '../../../shared/service/local-storage/local-storage';
 import { IJwtClaims } from '../../../core/interface/auth.interface';
@@ -13,13 +13,10 @@ import { UserRole } from '../../../shared/common/enumHelper';
 })
 export class Dashboard implements OnInit {
   userInfo!: IJwtClaims | null;
-  role: number = 0;
+  role = 0;
   userRole = UserRole;
-
-  constructor(
-    private storageService: LocalStorage,
-    private jwtHelperService: JwtHelperService
-  ) {}
+  private readonly storageService = inject(LocalStorage);
+  private readonly jwtHelperService = inject(JwtHelperService);
 
   ngOnInit(): void {
     this.userInfo = this.jwtHelperService.decodeToken(

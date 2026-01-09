@@ -1,4 +1,10 @@
-import { Component, inject, signal, WritableSignal, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  WritableSignal,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDriver } from './add-driver/add-driver';
 import { Button } from '../../../shared/form-control/component/button/button';
@@ -30,8 +36,8 @@ export class Driver implements OnInit {
     'licenseExpiry',
     'userId',
   ];
-
-  constructor(private userService: UserService, private snackbar: SnackBar) {}
+  private readonly userService = inject(UserService);
+  private readonly snackbar = inject(SnackBar);
 
   ngOnInit(): void {
     this.getUserData();
@@ -44,7 +50,6 @@ export class Driver implements OnInit {
           this.driverList.set(res.data);
         }
       },
-      error: (err) => {},
     });
   }
 
@@ -76,7 +81,6 @@ export class Driver implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {},
         });
       }
     });

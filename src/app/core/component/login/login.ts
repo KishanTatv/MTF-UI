@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -23,13 +23,11 @@ import { Router, RouterModule } from '@angular/router';
 export class Login implements OnInit {
   form!: FormGroup;
   loginControl = loginControl;
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private storageService: LocalStorage,
-    private snackbar: SnackBar,
-    private router: Router
-  ) {}
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly snackbar = inject(SnackBar);
+  private readonly storageService = inject(LocalStorage);
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -70,7 +68,7 @@ export class Login implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {
+          error: () => {
             this.snackbar.error('Try again later!');
           },
         });

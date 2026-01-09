@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IResponseModel } from '../../../shared/common/response.interface';
 import { IVehicleModel } from '../../vehicle/interface/vehicle.interface';
@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class TripService {
-  constructor(private http: HttpHandler) {}
+  private readonly http = inject(HttpHandler);
 
   getTripOptionList(): Observable<IResponseModel<ITripOptionModel>> {
     return this.http.httpGet<ITripOptionModel>(`Admin/GetTripOptionList`);

@@ -55,7 +55,6 @@ export class Trip implements OnInit {
           this.tripList.set(res.data);
         }
       },
-      error: (err) => {},
     });
   }
 
@@ -69,7 +68,7 @@ export class Trip implements OnInit {
           this.snackbar.error(res.message);
         }
       },
-      error: (err) => {
+      error: () => {
         this.snackbar.error('Try Later!');
       },
     });
@@ -114,7 +113,6 @@ export class Trip implements OnInit {
               this.snackbar.error(res.message);
             }
           },
-          error: (err) => {},
         });
       }
     });

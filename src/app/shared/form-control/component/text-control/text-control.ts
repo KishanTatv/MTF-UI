@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -42,7 +42,7 @@ export class TextControl {
   iconClick = output<Event>();
   // matIcons = MatIcons;
 
-  constructor(public _validator: ValidatorService) {}
+  private readonly _validator = inject(ValidatorService);
 
   onIconClick(event: Event) {
     this.iconClick.emit(event);

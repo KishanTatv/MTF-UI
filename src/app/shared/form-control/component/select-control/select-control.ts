@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output, AfterViewChecked } from '@angular/core';
+import { Component, input, output, AfterViewChecked, inject } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -40,7 +40,7 @@ export class SelectControl implements AfterViewChecked {
   defaultText = input<string>('--- Select ---');
   isMultiple = input<boolean>(false);
   searchTerm = '';
-  constructor(public _validator: ValidatorService) {}
+  _validator = inject(ValidatorService);
 
   getOptions() {
     const formControlModel = this.options();
@@ -51,8 +51,8 @@ export class SelectControl implements AfterViewChecked {
   }
 
   getFilteredOptions() {
-    return this.options()?.filter((x: any) =>
-      x.value.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.options()?.filter((x: ISelectOptionModel) =>
+      x.value.toLocaleString().toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
@@ -62,8 +62,8 @@ export class SelectControl implements AfterViewChecked {
       ?.classList.remove('mdc-text-field--disabled');
   }
 
-  filterOptions(e: any) {
-    this.searchTerm = e.target.value;
+  filterOptions(value: string) {
+    this.searchTerm = value;
     this.getFilteredOptions();
   }
 }

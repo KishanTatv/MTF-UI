@@ -16,15 +16,15 @@
 
             @if (enableSearch()) {
             <mat-form-field [subscriptSizing]="'dynamic'" class="no-border" appearance="outline">
-                <input matInput (input)="filterOptions($event)" placeholder="Search options..." />
+                <input matInput (input)="filterOptions($event.target.value)" placeholder="Search options..." />
             </mat-form-field>
-            } @if (getFilteredOptions()?.length == 0) {
+            } @if (getFilteredOptions()?.length === 0) {
             <mat-option [disabled]="true">
                 No {{ formControlModel().label?.replace("Select ", "") }} available
             </mat-option>
             } @for (item of getOptions(); track $index) {
             <mat-option [ngClass]="{ 'd-none': !getFilteredOptions()?.includes(item) }" [value]="item.id" [disabled]="
-            formControlModel().isDisable && selected() != item.id ? true : false
+            formControlModel().isDisable && selected() !== item.id ? true : false
           " (click)="optionClick.emit(item.id)">
                 {{ item.value }}
             </mat-option>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, Input, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -26,8 +26,8 @@ export class Header implements OnInit {
     { id: 3, message: 'Driver A. Khan checked in' },
   ];
   userRole = UserRole;
-  accountUserRole: number = 0;
-  isAdmin: boolean = false;
+  accountUserRole = 0;
+  isAdmin = false;
 
   ngOnInit(): void {
     this.accountUserRole = Number(this.userData()?.role);

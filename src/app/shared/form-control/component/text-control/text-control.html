@@ -18,7 +18,7 @@
             (click)="!formControlModel().isDisable && onIconClick($event)">
             <mat-icon>{{formControlModel().iconName}}</mat-icon>
         </button>
-        } @if(isDisable() == false){
+        } @if(isDisable() === false){
         <mat-error>
             @if(errorLength() < errorText.length && errorText.length> 55) {
                 <span [matTooltip]="errorText">
